@@ -1,0 +1,26 @@
+{
+  "name": "dugun-popup",
+  "version": "0.0.0",
+  "description": "Bootstrap modal opener.",
+  "authors": [
+    "Ege Sertçetin"
+  ],
+  "homepage": "https://github.com/duguncom/dugun-popup",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": ">=1.3",
+    "angular-ui-bootstrap-bower": ">=0.13.0"
+  },
+  "main": [
+    "dist/dugun-popup.js"
+  ],
+  "devDependencies": {
+    "angular-mocks": "^1.5.0"
+  }
+}
