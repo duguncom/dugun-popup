@@ -39,7 +39,7 @@ function DgPopup($uibModal, dgPopupConfig) {
         options.modalOptions = options.modalOptions || {};
 
         var modalInstance = $uibModal.open({
-            backdrop: options.modalOptions.backdrop || 'static',
+            backdrop: options.backdrop || 'static',
             size: options.modalOptions.size || 'lg',
             templateUrl: options.templateUrl,
             controller: options.controller,
