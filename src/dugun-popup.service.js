@@ -41,7 +41,7 @@ function DgPopup($uibModal, dgPopupConfig) {
             }
         });
 
-        callListener(modalInstance.rendered);
+        callListener(modalInstance);
 
         return modalInstance;
     };
@@ -64,12 +64,14 @@ function DgPopup($uibModal, dgPopupConfig) {
      * @ngdoc method
      * @memberof DgPopup
      * @private
-     * @param promise {promise} Calls the listener with promise
+     * @param modalInstance {object} Calls the listener with modalInstance.rendered
      * @description
      * Calls the listener if it is set.
      */
-    function callListener(promise) {
-        if(listener) listener(promise);
+    function callListener(modalInstance) {
+        if(listener && modalInstance && modalInstance.rendered) {
+            listener(modalInstance.rendered);
+        }
     }
 
     return service;
