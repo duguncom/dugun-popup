@@ -25,8 +25,7 @@ function DgPopup($uibModal, dgPopupConfig) {
      * Opens a bootstrap modal
      */
     service.openModal = function(options) {
-        options = options || {};
-        options.modalOptions = options.modalOptions || dgPopupConfig.modalOptions;
+        options = angular.merge({}, dgPopupConfig, options);
 
         var modalInstance = $uibModal.open({
             backdrop: options.modalOptions.backdrop || 'static',

@@ -9,7 +9,6 @@ describe('dgPopup', function() {
         return dgPopup.setListener(listener.func);
     }
 
-    beforeEach(module('ui.bootstrap.modal'));
     beforeEach(module('dugun.popup'));
 
     beforeEach(inject(function(_$uibModal_, _dgPopup_){
