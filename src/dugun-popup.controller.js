@@ -15,4 +15,4 @@ DugunPopupCtrl.$inject = [
     '$uibModalInstance',
 ];
 
-angular.module(dugun.popup).controller('DugunPopupCtrl', DugunPopupCtrl);
+angular.module('dugun.popup').controller('DugunPopupCtrl', DugunPopupCtrl);
