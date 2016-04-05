@@ -3,15 +3,17 @@
  * @memberof dugun.popup
  * @name DugunPopupCtrl
  *
- * @requires $uibModalInstance
+ * @requires $scope
+ * @requires ui.bootstrap.modal:$uibModalInstance
  */
-function DugunPopupCtrl($uibModalInstance) {
+function DugunPopupCtrl($scope, $uibModalInstance) {
     $scope.close = function() {
         $uibModalInstance.dismiss();
     }
 }
 
 DugunPopupCtrl.$inject = [
+    '$scope',
     '$uibModalInstance',
 ];
 

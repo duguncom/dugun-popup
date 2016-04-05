@@ -3,7 +3,10 @@ describe('dgPopup', function() {
         $templateCache,
         dgPopup,
         listener = {},
-        modalInstance;
+        modalInstance,
+        modalInstanceMock,
+        DugunPopupCtrl,
+        scope;
 
     function setListener() {
         return dgPopup.setListener(listener.func);
@@ -11,13 +14,27 @@ describe('dgPopup', function() {
 
     beforeEach(module('dugun.popup'));
 
-    beforeEach(inject(function(_$uibModal_, _dgPopup_){
+    beforeEach(inject(function(_$uibModal_, _dgPopup_, _$templateCache_, $controller, $rootScope){
         $uibModal = _$uibModal_;
         dgPopup = _dgPopup_;
+
+        $templateCache = _$templateCache_;
+        $templateCache.put('nothing.html', 'nothing');
 
         listener.func = function(promise) {
             return true;
         };
+
+        scope = $rootScope.$new();
+        modalInstanceMock = {
+            close: jasmine.createSpy('modalInstance.close'),
+            dismiss: jasmine.createSpy('modalInstance.dismiss')
+        };
+
+        DugunPopupCtrl = $controller('DugunPopupCtrl', {
+            $scope: scope,
+            $uibModalInstance: modalInstanceMock
+        });
 
         spyOn(listener, 'func');
 
@@ -30,7 +47,6 @@ describe('dgPopup', function() {
     });
 
     describe('openModal', function() {
-
         it('openModal calls the $uibModal.open', function() {
             spyOn($uibModal, 'open');
 
@@ -45,8 +61,7 @@ describe('dgPopup', function() {
 
         it('calls the listener with rendered promise', function() {
             var options = {
-                templateUrl: 'nothing.html',
-                controller: ''
+                templateUrl: 'nothing.html'
             };
 
             modalInstance = dgPopup.openModal(options);
@@ -55,8 +70,27 @@ describe('dgPopup', function() {
         });
 
         it('returns uibModalInstance', function() {
-            expect(modalInstance.rendered.constructor.name).toBe('Promise');
-        });
+            var expected = [
+                'result',
+                'opened',
+                'closed',
+                'rendered',
+                'close',
+                'dismiss',
+            ].sort();
 
+            expect(Object.keys(modalInstance).sort()).toEqual(expected);
+        });
+    });
+
+    it('close modal', function() {
+        var options = {
+            templateUrl: 'nothing.html',
+            controller: DugunPopupCtrl
+        };
+        dgPopup.openModal(options);
+        scope.close();
+
+        expect(modalInstanceMock.dismiss).toHaveBeenCalled();
     });
 });
