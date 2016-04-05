@@ -94,10 +94,30 @@ DgPopup.$inject = [
 angular.module('dugun.popup')
     .factory('dgPopup', DgPopup);
 
+/**
+ * @ngdoc controller
+ * @memberof dugun.popup
+ * @name DugunPopupCtrl
+ *
+ * @requires $uibModalInstance
+ */
+function DugunPopupCtrl($uibModalInstance) {
+    $scope.close = function() {
+        $uibModalInstance.dismiss();
+    }
+}
+
+DugunPopupCtrl.$inject = [
+    '$uibModalInstance',
+];
+
+angular.module(dugun.popup).controller('DugunPopupCtrl', DugunPopupCtrl);
+
 angular.module('dugun.popup').constant('dgPopupConfig', {
     modalOptions: {
         backdrop: 'static',
         size: 'lg',
         windowClass: null
-    }
+    },
+    controller: 'DugunPopupCtrl'
 });

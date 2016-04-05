@@ -35,8 +35,7 @@ describe('dgPopup', function() {
             spyOn($uibModal, 'open');
 
             var options = {
-                templateUrl: 'nothing.html',
-                controller: ''
+                templateUrl: 'nothing.html'
             };
 
             dgPopup.openModal(options);
