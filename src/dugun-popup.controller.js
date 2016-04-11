@@ -17,6 +17,7 @@ function DugunPopupCtrl($scope, $uibModalInstance, data) {
 DugunPopupCtrl.$inject = [
     '$scope',
     '$uibModalInstance',
+    'data',
 ];
 
 angular.module('dugun.popup').controller('DugunPopupCtrl', DugunPopupCtrl);
