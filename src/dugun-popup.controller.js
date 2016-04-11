@@ -6,7 +6,9 @@
  * @requires $scope
  * @requires ui.bootstrap.modal:$uibModalInstance
  */
-function DugunPopupCtrl($scope, $uibModalInstance) {
+function DugunPopupCtrl($scope, $uibModalInstance, data) {
+    $scope.data = data;
+
     $scope.close = function() {
         $uibModalInstance.dismiss();
     }
