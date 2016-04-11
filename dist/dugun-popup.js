@@ -43,6 +43,7 @@ function DgPopup($uibModal, dgPopupConfig) {
             templateUrl: options.templateUrl,
             controller: options.controller,
             windowClass: options.modalOptions.windowClass || '',
+            keyboard: options.modalOptions.keyboard,
             resolve: {
                 itemId: function() { return options.itemId || null; },
                 parentId: function() { return options.parentId || null; },
@@ -119,7 +120,8 @@ angular.module('dugun.popup').constant('dgPopupConfig', {
     modalOptions: {
         backdrop: 'static',
         size: 'lg',
-        windowClass: null
+        windowClass: null,
+        keyboard: true
     },
     controller: 'DugunPopupCtrl'
 });
