@@ -7,7 +7,7 @@
  * @requires ui.bootstrap.modal:$uibModalInstance
  */
 function DugunPopupCtrl($scope, $uibModalInstance, data) {
-    $scope.data = angular.copy(data);
+    $scope.data = angular.copy(data) || {};
 
     $scope.close = function() {
         if(angular.equals($scope.data, data) || angular.equals($scope.data, {})) {
