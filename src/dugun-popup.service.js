@@ -1,5 +1,4 @@
 /**
- * CustomerUserPopup factory
  * @ngdoc factory
  * @memberof dugun.popup
  * @name DgPopup
