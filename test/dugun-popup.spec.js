@@ -33,7 +33,8 @@ describe('dgPopup', function() {
 
         DugunPopupCtrl = $controller('DugunPopupCtrl', {
             $scope: scope,
-            $uibModalInstance: modalInstanceMock
+            $uibModalInstance: modalInstanceMock,
+            data: {},
         });
 
         spyOn(listener, 'func');
