@@ -9,7 +9,6 @@ angular.module('dugun.popup', [
 ]);
 
 /**
- * CustomerUserPopup factory
  * @ngdoc factory
  * @memberof dugun.popup
  * @name DgPopup
@@ -104,10 +103,14 @@ angular.module('dugun.popup')
  * @requires ui.bootstrap.modal:$uibModalInstance
  */
 function DugunPopupCtrl($scope, $uibModalInstance, data) {
-    $scope.data = data;
+    $scope.data = angular.copy(data);
 
     $scope.close = function() {
-        $uibModalInstance.dismiss();
+        if(angular.equals($scope.data, data) || angular.equals($scope.data, {})) {
+            $uibModalInstance.dismiss();
+        } else {
+            $uibModalInstance.close($scope.data);
+        }
     }
 }
 
