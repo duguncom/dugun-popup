@@ -42,6 +42,16 @@ function DgPopup($uibModal, dgPopupConfig) {
 
         callListener(modalInstance);
 
+        modalInstance.opened.then(function() {
+            var html = document.querySelector("html");
+            html.style.overflow = "hidden"
+        });
+
+         modalInstance.closed.then(function() {
+             var html = document.querySelector("html");
+             html.style.removeProperty("overflow");
+        });
+
         return modalInstance;
     };
 
