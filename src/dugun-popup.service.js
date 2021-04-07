@@ -25,8 +25,7 @@ function DgPopup($uibModal, dgPopupConfig) {
      */
     service.openModal = function(options) {
         options = angular.merge({}, dgPopupConfig, options);
-
-        var modalInstance = $uibModal.open({
+        options = {
             templateUrl: options.templateUrl,
             controller: options.controller,
             scope: options.scope,
@@ -39,7 +38,13 @@ function DgPopup($uibModal, dgPopupConfig) {
                 parentId: function() { return options.parentId || null; },
                 data: function() { return options.data || null; }
             }
-        });
+        }
+
+        if(!options.scope){
+            delete options.scope;
+        }
+
+        var modalInstance = $uibModal.open(options);
 
         callListener(modalInstance);
 
