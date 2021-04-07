@@ -27,12 +27,13 @@ function DgPopup($uibModal, dgPopupConfig) {
         options = angular.merge({}, dgPopupConfig, options);
 
         var modalInstance = $uibModal.open({
-            backdrop: options.modalOptions.backdrop || 'static',
-            size: options.modalOptions.size || 'lg',
             templateUrl: options.templateUrl,
             controller: options.controller,
+            scope: options.scope,
             windowClass: options.modalOptions.windowClass || '',
             keyboard: options.modalOptions.keyboard,
+            backdrop: options.modalOptions.backdrop || 'static',
+            size: options.modalOptions.size || 'lg',
             resolve: {
                 itemId: function() { return options.itemId || null; },
                 parentId: function() { return options.parentId || null; },
