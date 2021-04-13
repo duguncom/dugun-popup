@@ -35,22 +35,38 @@ function DgPopup($uibModal, dgPopupConfig) {
      */
     service.openModal = function(options) {
         options = angular.merge({}, dgPopupConfig, options);
-
-        var modalInstance = $uibModal.open({
-            backdrop: options.modalOptions.backdrop || 'static',
-            size: options.modalOptions.size || 'lg',
+        var modalConfig = {
             templateUrl: options.templateUrl,
             controller: options.controller,
-            windowClass: options.modalOptions.windowClass || '',
+            scope: options.scope,
             keyboard: options.modalOptions.keyboard,
+            windowClass: options.modalOptions.windowClass,
+            backdrop: options.modalOptions.backdrop,
+            size: options.modalOptions.size,
             resolve: {
                 itemId: function() { return options.itemId || null; },
                 parentId: function() { return options.parentId || null; },
                 data: function() { return options.data || null; }
             }
-        });
+        }
+
+        if(!modalConfig.scope){
+            delete modalConfig.scope;
+        }
+
+        var modalInstance = $uibModal.open(modalConfig);
 
         callListener(modalInstance);
+
+        modalInstance.opened.then(function() {
+            var html = document.querySelector("html");
+            html.style.overflow = "hidden"
+        });
+
+         modalInstance.closed.then(function() {
+             var html = document.querySelector("html");
+             html.style.removeProperty("overflow");
+        });
 
         return modalInstance;
     };
