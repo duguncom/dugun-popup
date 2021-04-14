@@ -34,7 +34,7 @@ function DgPopup($uibModal, dgPopupConfig) {
      * Opens a bootstrap modal
      */
     service.openModal = function(options) {
-        options = angular.merge({}, dgPopupConfig, options);
+        options = Object.assign({}, dgPopupConfig, options);
         var modalConfig = {
             templateUrl: options.templateUrl,
             controller: options.controller,
