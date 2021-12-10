@@ -1,5 +1,6 @@
 {
   "name": "dugun-popup",
+  "version":"1.4.2",
   "description": "Bootstrap modal opener.",
   "authors": [
     "Ege Sertçetin"
